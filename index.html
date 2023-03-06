@@ -4,9 +4,101 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Sistema de Votación </title>
 </head>
 <body>
     
+    <main>
+        
+        <h4 class="formulario__label">Formulario votación</h4>
+        <form action="formulario.php" method="POST" class="formulario" id="formulario">
+            
+            <!--Grupo Nombre-->
+            <div class="formulario__grupo" id="grupo__nombre">
+                <div class="formulario__grupo-input">
+                    <input class="info formulario__input" type="text" name="nombre" id="nombres" placeholder="Nombre completo" required>
+                    <i class="formulario__validacion-estado fa-solid fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">El nombre puede tener de 4 a 16 digitos y solo puede contener letras y espacios.</p>
+            </div>
+
+            <!--Grupo Alias-->
+            <div class="formulario__grupo" id="grupo__alias">
+                <div class="formulario__grupo-input">
+                    <input class="info formulario__input" type="text" name="alias" id="alias" placeholder="ingrese su alias" required>
+                    <i class="formulario__validacion-estado fa-solid fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">El alias puede tener de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo, no lleva espacio.</p>
+            </div>
+
+            <!--Grupo Rut-->
+            <div class="formulario__grupo" id="grupo__rut">
+                <div class="formulario__grupo-input">
+                    <input class="info formulario__input" type="text" name="rut" id="rut" placeholder="ingrese su rut" required>
+                    <i class="formulario__validacion-estado fa-solid fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">Rut invalido, el rut debe llevar un guion y estar sin puntos, maximo 10 digitos</p>
+            </div>
+
+            <!--Grupo Correo-->
+            <div class="formulario__grupo" id="grupo__correo">
+                <div class="formulario__grupo-input">
+                    <input class="info formulario__input" type="text" name="correo" id="correo" placeholder="ingrese su correo" required>
+                    <i class="formulario__validacion-estado fa-solid fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">Correo invalido, reingrese correo valido: ejemplo_de@correo.com</p>
+            </div>
+            <!--Grupo Region-->
+            <div class="formulario__grupo-select" id="grupo__region">
+                    <select class="formulario__select" name="Region" id="region" required>
+                        <option selected hidden value="">Región</option>
+                        <option value="5">V Region </option>
+                        <option value="M">Metropolitana</option>
+                    </select>
+            </div>
+            <!--Grupo Comuna-->
+            <div class="formulario__grupo-select" id="grupo__comuna">
+                    <select class="formulario__select" name="comuna" id="comuna" required>
+                        <option selected hidden value="">Comuna</option>
+                        <option value="quilpue">Quilpue</option>
+                        <option value="viña">Viña del mar</option>
+                        <option value="valpo">valparaiso</option>
+                    </select>
+            </div>
+            <!--Grupo Candidato-->
+            <div class="formulario__grupo-select" id="grupo__candidato">
+                    <select class="formulario__select" name="candidato" id="candidato" required>
+                        <option selected hidden value="">Candidato</option>
+                        <option value="pedro">Pedro piedra</option>
+                        <option value="pablo">Pablo picapiedra</option>
+                        <option value="salmon">Salmon contra corriente</option>
+                    </select>
+            </div>
+            <!--Grupo Nosotros-->
+            <div class="formulario__grupo-nosotros" id="grupo__nosotros">
+                <p>Como se enteró de nosotros</p>
+                <label class="formulario__label">
+                    <input class="checkbox" type="checkbox" name="referencia" value="web">Web
+                    <input class="checkbox" type="checkbox" name="referencia" value="tv">TV 
+                    <input class="checkbox" type="checkbox" name="referencia" value="rrss">RRSS
+                    <input class="checkbox" type="checkbox" name="referencia" value="amigo">Amigo
+                </label>
+
+            </div>
+            <div class="formulario__mensaje" id="formulario__mensaje">
+                <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente. </p>
+            </div>
+
+            <div class="formulario__grupo formulario__grupo-btn-enviar">
+                <button type="submit" class="formulario__btn">Votar</button>
+                <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Votacion enviada exitosamente!</p>
+            </div>
+        </form>
+        
+        <script src="js/formulario.js"></script>
+        <script src="https://kit.fontawesome.com/5b98485d0c.js" crossorigin="anonymous"></script>
+    </main>
+
 </body>
 </html>
