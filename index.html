@@ -5,14 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="php/conexion.php">
+    <script
+    src="https://code.jquery.com/jquery-3.6.3.js"
+    integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+    crossorigin="anonymous"></script>
+
     <title>Sistema de Votación </title>
 </head>
 <body>
-    
     <main>
         
         <h4 class="formulario__label">Formulario votación</h4>
-        <form action="formulario.php" method="POST" class="formulario" id="formulario">
+        <form action="php/formulario.php" method="POST" class="formulario" id="formulario">
             
             <!--Grupo Nombre-->
             <div class="formulario__grupo" id="grupo__nombre">
@@ -29,7 +34,7 @@
                     <input class="info formulario__input" type="text" name="alias" id="alias" placeholder="ingrese su alias" required>
                     <i class="formulario__validacion-estado fa-solid fa-times-circle"></i>
                 </div>
-                <p class="formulario__input-error">El alias puede tener de 4 a 16 digitos y solo puede contener numeros, letras y guion bajo, no lleva espacio.</p>
+                <p class="formulario__input-error">El alias puede tener de 5 a 16 digitos y solo puede contener numeros y letras, no lleva espacio.</p>
             </div>
 
             <!--Grupo Rut-->
@@ -49,41 +54,42 @@
                 </div>
                 <p class="formulario__input-error">Correo invalido, reingrese correo valido: ejemplo_de@correo.com</p>
             </div>
+            
             <!--Grupo Region-->
             <div class="formulario__grupo-select" id="grupo__region">
-                    <select class="formulario__select" name="Region" id="region" required>
-                        <option selected hidden value="">Región</option>
+                    <select class="formulario__select" name="Region" id="select-region" required>
+                        <!-- <option selected hidden value="">Región</option>
                         <option value="5">V Region </option>
-                        <option value="M">Metropolitana</option>
+                        <option value="M">Metropolitana</option> -->
                     </select>
             </div>
             <!--Grupo Comuna-->
             <div class="formulario__grupo-select" id="grupo__comuna">
-                    <select class="formulario__select" name="comuna" id="comuna" required>
-                        <option selected hidden value="">Comuna</option>
+                    <select class="formulario__select" name="comuna" id="select-comuna" required>
+                        <!-- <option selected hidden value="">Comuna</option>
                         <option value="quilpue">Quilpue</option>
                         <option value="viña">Viña del mar</option>
-                        <option value="valpo">valparaiso</option>
+                        <option value="valpo">valparaiso</option> -->
                     </select>
             </div>
             <!--Grupo Candidato-->
             <div class="formulario__grupo-select" id="grupo__candidato">
-                    <select class="formulario__select" name="candidato" id="candidato" required>
-                        <option selected hidden value="">Candidato</option>
+                    <select class="formulario__select" name="candidato" id="select-candidato" required>
+                        <!-- <option selected hidden value="">Candidato</option>
                         <option value="pedro">Pedro piedra</option>
                         <option value="pablo">Pablo picapiedra</option>
-                        <option value="salmon">Salmon contra corriente</option>
+                        <option value="salmon">Salmon contra corriente</option> -->
                     </select>
             </div>
             <!--Grupo Nosotros-->
             <div class="formulario__grupo-nosotros" id="grupo__nosotros">
                 <p>Como se enteró de nosotros</p>
-                <label class="formulario__label">
-                    <input class="checkbox" type="checkbox" name="referencia" value="web">Web
-                    <input class="checkbox" type="checkbox" name="referencia" value="tv">TV 
-                    <input class="checkbox" type="checkbox" name="referencia" value="rrss">RRSS
-                    <input class="checkbox" type="checkbox" name="referencia" value="amigo">Amigo
-                </label>
+                
+                    <label><input class="checkbox" type="checkbox" name="nosotros" value="web">Web</label>
+                    <label><input class="checkbox" type="checkbox" name="nosotros" value="tv">TV </label>
+                    <label><input class="checkbox" type="checkbox" name="nosotros" value="rrss">RRSS</label>
+                    <label><input class="checkbox" type="checkbox" name="nosotros" value="amigo">Amigo</label>
+                
 
             </div>
             <div class="formulario__mensaje" id="formulario__mensaje">

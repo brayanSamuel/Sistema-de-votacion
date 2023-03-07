@@ -1,8 +1,78 @@
+//----- llenado dinamico desde base de datos -----
+$(document).ready(function() {
+    let $region = document.querySelector('#select-region');
+    let $comuna = document.querySelector('#select-comuna');
+    let $candidato = document.querySelector('#select-candidato');
+
+    function cargarRegiones() {
+        $.ajax({
+            type: "GET",
+            url: "php/formulario.php",
+            success: function(response) {
+                const regiones = JSON.parse(response);
+                let template = '<option selected disabled> Seleccione Region y Comuna</option>'
+                
+                regiones.forEach(region => {
+                    template += `<option value="${region.idRegion}">${region.nomRegion}</option>`
+                })
+                $region.innerHTML = template;
+            }
+        });
+    }
+        cargarRegiones()
+
+        function cargarComunas(enviarDatos){
+            $.ajax({
+                type: "POST",
+                url: "php/formulario.php",
+                data: enviarDatos,
+                success: function(response) {
+                    const comunas = JSON.parse(response);
+                let template = '<option selected disabled> Seleccione Comuna </option>'
+                
+                comunas.forEach(comuna => {
+                    template += `<option value="${comuna.idComuna}">${comuna.nomComuna}</option>`
+                })
+                $comuna.innerHTML = template;
+                }
+            });
+        }
+
+        $region.addEventListener('change', function() {
+            const idRegion = $region.value
+            
+            const enviarDatos = {
+                'idReg': idRegion
+            }
+            cargarComunas(enviarDatos)
+        })
+
+        function cargarCandidatos() {
+            $.ajax({
+                type: "GET",
+                url: "php/datos.php",
+                success: function(response) {
+                    console.log(response);
+                    const candidatos = JSON.parse(response);
+                    let template = '<option selected disabled> Seleccione su Candidato </option>'
+                    
+                    candidatos.forEach(candidato => {
+                        template += `<option value="${candidato.idCandidato}">${candidato.nomCandidato}</option>`
+                    })
+                    $candidato.innerHTML = template;
+                }
+            });
+        }
+        cargarCandidatos()
+})
+
+
+//--------- validaciones ----------
 const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 //se utilizara expresiones regulares 
 const expresiones = {
-   alias: /^[a-zA-Z0-9]{5,16}$/, // Letras y numeros
+   alias: /^[a-zA-Z0-9]{6,16}$/, // Letras y numeros, largo mayor a 5
    nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
    rut: /^[0-9]{7,8}[-|‐]{1}[0-9kK]{1}$/   // formato xxxxxxxx-x
@@ -91,7 +161,7 @@ inputs.forEach((input) => {
 });
 
 formulario.addEventListener('submit', (e) => {
-e.preventDefault();
+// e.preventDefault();
 
 if (campos.nombre && campos.alias && campos.rut && campos.correo ) {
    formulario.reset();
@@ -106,7 +176,10 @@ if (campos.nombre && campos.alias && campos.rut && campos.correo ) {
        icono.classList.remove('formulario__grupo-correcto');
    });
 } else {
-   document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
+    setTimeout(() => {
+        document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
+        
+    }, 5000);
 }
 
 });
